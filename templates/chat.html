@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPT Multi-User Chat</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div style="text-align: right; margin: 10px;">
+        {% if session.get('user') %}
+            <h2>Welcome, {{ session['user']['name'] }}!</h2>
+            <a href="{{ url_for('logout') }}">
+                <button>Logout</button>
+            </a>
+        {% else %}
+            <a href="{{ url_for('google.login') }}">
+                <button>Login with Google</button>
+            </a>
+        {% endif %}
+    </div>
+
+    <div id="chatContainer">
+        <div id="sidebar">
+            <button onclick="startNewChat()">+ New Chat</button>
+            <ul id="chatList"></ul>
+        </div>
+    
+        <div id="chatWindowWrapper">
+    
+            <div id="chatWindow">
+                
+                {% for message in history %}
+                <div class="message {% if session.get('user') and message.user.email == session['user']['email'] %}user-message{% else %}other-message{% endif %}">
+                    <strong>{{ message.user.name }}:</strong> {{ message.message }}
+                </div>
+                
+                {% endfor %}
+            </div>
+    
+            <div id="inputArea">
+                <input id="messageInput" type="text" placeholder="Type a message..." />
+                <button onclick="sendMessage(event)">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
