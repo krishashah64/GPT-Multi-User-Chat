@@ -35,11 +35,11 @@ Before getting started, ensure you have the following installed:
 1. Create a .env file in the root directory of the project.
 2. Add the following environment variables to the .env file:
 
-  FLASK_SECRET_KEY=your_flask_secret_key
-  GOOGLE_CLIENT_ID=your_google_client_id
-  GOOGLE_CLIENT_SECRET=your_google_client_secret
-  MONGO_URI=your_mongodb_connection_string
-  OPENAI_API_KEY=your_openai_api_key
+ - FLASK_SECRET_KEY=your_flask_secret_key
+ - GOOGLE_CLIENT_ID=your_google_client_id
+ - GOOGLE_CLIENT_SECRET=your_google_client_secret
+ - MONGO_URI=your_mongodb_connection_string
+ - OPENAI_API_KEY=your_openai_api_key
 
 
 ### Clone the Repository
